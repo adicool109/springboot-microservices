@@ -1,2 +1,2 @@
-# springboot-microservices
+# Springboot + service discovery + api gateway
 microservices implementation
