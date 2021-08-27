@@ -7,7 +7,7 @@ microservices implementation
 - api gateway (spring cloud apigateway)
 
 TODO:-
-resilience4j
-spring security
-cloud config
-zipkin log tracing
+- resilience4j
+- spring security
+- cloud config
+- zipkin log tracing
