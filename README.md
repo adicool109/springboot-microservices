@@ -1,7 +1,7 @@
 # Springboot + service discovery + api gateway
 microservices implementation
 
-#Implemented:-
+#Implemented
 - Added 2 microservices
 - service registry (eureka)
 - api gateway (spring cloud apigateway)
