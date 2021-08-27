@@ -1,0 +1,77 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: EMPLOYEE-SERVICE
+          uri: lb://EMPLOYEE-SERVICE
+          predicates:
+            - Path=/employee/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: EMPLOYEE-SERVICE
+#                fallbackuri: forward:/employeeServiceFallBack
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: DEPARTMENT-SERVICE
+#                fallbackuri: forward:/departmentServiceFallBack
+
+#hystrix:
+#  command:
+#    fallbackcmd:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 3000
+
+#actuator configuration
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: hystrix.stream
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      defaultFallBack:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
