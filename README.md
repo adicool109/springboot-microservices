@@ -11,3 +11,4 @@ TODO:-
 - spring security
 - cloud config
 - zipkin log tracing
+- implement @FeignClient for calling other API's
