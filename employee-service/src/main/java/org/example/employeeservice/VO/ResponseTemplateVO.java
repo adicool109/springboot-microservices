@@ -12,4 +12,7 @@ public class ResponseTemplateVO {
 
     private Employee employee;
     private Department department;
+
+    // test
+    private String email;
 }
