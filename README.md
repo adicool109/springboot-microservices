@@ -12,3 +12,4 @@ TODO:-
 - cloud config
 - zipkin log tracing
 - implement @FeignClient for calling other API's
+- implement @ControllerAdvice for handling different exceptions and HTTP status code error
